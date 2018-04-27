@@ -15,15 +15,13 @@ function errorRatio = logisticRegression()
     trainingClass = trainingData(:, 31);
     % Remove the class label from the training data
     trainingData = trainingData(:,1:30);
-    % Get categorie of the classes
+    % Get categori
     trainingSpecies = categorical(trainingClass);
     % Train data
     % B contains the Y intercep and the W vectro.
     [B, dev, stats] = mnrfit(trainingData, trainingSpecies);
     
-    % Obtain Y intercept
     yIntercept = B(1,1);
-    % Obtain the W vector
     W = B(2:end,:);
     
     % Get the class lable and remove it from the test data
@@ -33,6 +31,7 @@ function errorRatio = logisticRegression()
     % Use the function from the logistic regression and predict the class
     % for the test set.
     testPredict = (testData*W) + yIntercept;
+    disp("Size of test predict " + size(testPredict));
     
     error = [];
     for i = [testPredict';testClass']
@@ -42,7 +41,8 @@ function errorRatio = logisticRegression()
             error = [error; 1 == i(2)];
         end
     end
+    disp("Error: " + sum(error(:) == 0))
+    disp("Rights: " + sum(error(:) == 1))
     errorRatio = (sum(error(:) == 1) / (rows/3)) * 100;
-    disp("Error ration: " + errorRatio);
     
 end
