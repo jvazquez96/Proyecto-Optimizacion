@@ -43,6 +43,8 @@ function errorRatio = logisticRegression()
         end
     end
     errorRatio = (sum(error(:) == 1) / (rows/3)) * 100;
-    disp("Error ration: " + errorRatio);
+    disp("Accuracy ratio: " + errorRatio);
+    disp("Correct predictions: " + sum(error(:) == 1))
+    disp("erroneous predictions: " + sum(error(:) == 0))
     
 end
