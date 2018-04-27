@@ -12,6 +12,9 @@ function valuesO = DE(Fitness, ProblemDim, LowerBoundV,UpperBoundV,PopulationS,C
     % StopCriteria = un entero que indicala cantidad maximas de
     % evaluaciones
     
+    % Set random seed
+    rng('default');
+    
     % Almacenar los datos de prueba
     m = csvread('creditcard.csv');
     
